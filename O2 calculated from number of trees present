@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+struct Tree {
+    string species;
+    double oxygenProduction; // Oxygen produced per tree
+    int count; // Number of trees of this species
+};
+
+
+double calculateAverageOxygen(const vector<Tree>& trees) {
+    double totalOxygen = 0;
+    int totalTrees = 0;
+
+    
+    for (const Tree& tree : trees) {
+        totalOxygen += tree.oxygenProduction * tree.count;
+        totalTrees += tree.count;
+    }
+
+    
+    if (totalTrees > 0) {
+        return totalOxygen / totalTrees;
+    } else {
+        return 0; 
+    }
+}
+
+int main() {
+    // Sample data: aerial image of trees captured by drone
+    vector<Tree> trees = {
+        {"Oak", 260, 100},   
+        {"Pine", 150, 80},   
+        // Add more trees as needed
+    };
+
+    
+    double averageOxygen = calculateAverageOxygen(trees);
+
+    
+    cout << "Average oxygen produced per tree: " << averageOxygen << " units" << endl;
+
+    return 0;
+}
